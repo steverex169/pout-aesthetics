@@ -99,8 +99,9 @@ h2.section-title{font-family:var(--display);font-weight:400;font-size:clamp(34px
 .hero-rule{width:64px;height:1px;background:var(--neon);margin:36px auto 26px;box-shadow:0 0 14px var(--neon);animation:heroUp .9s cubic-bezier(.22,1,.36,1) .45s both,rulePulse 4s ease-in-out 2.5s infinite}
 .hero-line{font-size:clamp(15px,1.6vw,18px);line-height:1.7;color:rgba(255,255,255,.82);max-width:38ch;margin:0 auto 38px;animation:heroUp .9s cubic-bezier(.22,1,.36,1) .55s both}
 .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:heroUp .9s cubic-bezier(.22,1,.36,1) .7s both}
-.hero .bloom{animation:bloomPulse 8s ease-in-out infinite}
-.flicker{animation:flicker 2.1s ease-out both,glowPulse 5s ease-in-out 2.3s infinite}
+.hero .bloom{animation:bloomPulse 8s ease-in-out infinite,hueDrift 14s ease-in-out infinite;transition:translate .7s cubic-bezier(.22,1,.36,1)}
+.hero .sparks{transition:transform .7s cubic-bezier(.22,1,.36,1)}
+.flicker{animation:flicker 2.1s ease-out both,glowPulse 5s ease-in-out 2.3s infinite,logoBreathe 5s ease-in-out 2.3s infinite}
 @keyframes flicker{0%{opacity:0;filter:none}8%{opacity:1}10%{opacity:.25}14%{opacity:1}17%{opacity:.4}20%,100%{opacity:1}}
 @keyframes heroUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
 @keyframes glowPulse{
@@ -117,6 +118,19 @@ h2.section-title{font-family:var(--display);font-weight:400;font-size:clamp(34px
   50%{transform:translate(var(--sway),-45vh) scale(1);opacity:.65}
   100%{transform:translate(calc(var(--sway)*-.6),-92vh) scale(1.15);opacity:0}
 }
+.sparks i.orb{filter:blur(7px);box-shadow:none;background:radial-gradient(circle,rgba(255,53,188,.42),rgba(255,53,188,.12) 55%,transparent 72%)}
+@keyframes logoBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}
+@keyframes hueDrift{0%,100%{filter:hue-rotate(0deg)}50%{filter:hue-rotate(-14deg)}}
+.hero-ray{position:absolute;top:-20%;left:-45%;width:34%;height:140%;pointer-events:none;z-index:1;transform:skewX(-14deg);opacity:0;
+  background:linear-gradient(100deg,transparent 0%,rgba(255,255,255,.05) 35%,rgba(255,147,228,.14) 50%,rgba(255,255,255,.05) 65%,transparent 100%);
+  animation:raySweep 9s ease-in-out 3.2s infinite}
+@keyframes raySweep{0%{left:-45%;opacity:0}6%{opacity:1}26%{left:112%;opacity:.85}30%,100%{left:112%;opacity:0}}
+.hero-actions .btn-neon{position:relative;overflow:hidden;animation:btnGlow 3.4s ease-in-out 3.2s infinite}
+.hero-actions .btn-neon::after{content:"";position:absolute;top:0;left:-90%;width:55%;height:100%;transform:skewX(-20deg);
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.5),transparent);
+  animation:btnShine 3.4s ease-in-out 3.2s infinite}
+@keyframes btnGlow{0%,100%{box-shadow:0 0 0 rgba(255,53,188,0)}45%{box-shadow:0 0 30px rgba(255,53,188,.75),0 0 60px rgba(255,53,188,.35)}}
+@keyframes btnShine{0%,55%{left:-90%}85%,100%{left:140%}}
 
 /* ---------- page hero ---------- */
 .phero{position:relative;overflow:hidden;padding:clamp(78px,10vw,126px) 0 clamp(48px,6vw,72px);border-bottom:1px solid var(--hair)}
@@ -682,17 +696,37 @@ document.querySelectorAll('.ba-stage').forEach(stage=>{
 const hero=document.querySelector('.hero');
 if(hero && !matchMedia('(prefers-reduced-motion: reduce)').matches){
   const sparks=document.createElement('div');sparks.className='sparks';
-  for(let i=0;i<16;i++){
+  const addSpark=(orb)=>{
     const s=document.createElement('i');
-    const size=2+Math.random()*4;
+    if(orb)s.className='orb';
+    const size=orb?(38+Math.random()*55):(2+Math.random()*4);
     s.style.left=Math.random()*100+'%';
     s.style.width=s.style.height=size.toFixed(1)+'px';
-    s.style.setProperty('--sway',((Math.random()*80-40).toFixed(0))+'px');
-    s.style.animationDuration=(7+Math.random()*9).toFixed(1)+'s';
-    s.style.animationDelay=(-Math.random()*14).toFixed(1)+'s';
+    s.style.setProperty('--sway',((Math.random()*(orb?50:80)-(orb?25:40)).toFixed(0))+'px');
+    s.style.animationDuration=((orb?16:7)+Math.random()*(orb?12:9)).toFixed(1)+'s';
+    s.style.animationDelay=(-Math.random()*24).toFixed(1)+'s';
     sparks.appendChild(s);
-  }
+  };
+  for(let i=0;i<26;i++)addSpark(false);
+  for(let i=0;i<6;i++)addSpark(true);
   hero.appendChild(sparks);
+
+  const ray=document.createElement('div');ray.className='hero-ray';
+  hero.appendChild(ray);
+
+  if(matchMedia('(pointer: fine)').matches){
+    const bloomEl=hero.querySelector('.bloom');
+    hero.addEventListener('pointermove',e=>{
+      const r=hero.getBoundingClientRect();
+      const x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+      sparks.style.transform=`translate(${(x*26).toFixed(1)}px,${(y*18).toFixed(1)}px)`;
+      if(bloomEl)bloomEl.style.translate=`${(x*44).toFixed(1)}px ${(y*30).toFixed(1)}px`;
+    });
+    hero.addEventListener('pointerleave',()=>{
+      sparks.style.transform='';
+      if(bloomEl)bloomEl.style.translate='';
+    });
+  }
 }
 
 const baFilter=document.getElementById('baFilter');
