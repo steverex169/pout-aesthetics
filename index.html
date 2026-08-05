@@ -121,10 +121,19 @@ h2.section-title{font-family:var(--display);font-weight:400;font-size:clamp(34px
 .sparks i.orb{filter:blur(7px);box-shadow:none;background:radial-gradient(circle,rgba(255,53,188,.42),rgba(255,53,188,.12) 55%,transparent 72%)}
 @keyframes logoBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}
 @keyframes hueDrift{0%,100%{filter:hue-rotate(0deg)}50%{filter:hue-rotate(-14deg)}}
-.hero-ray{position:absolute;top:-20%;left:-45%;width:34%;height:140%;pointer-events:none;z-index:1;transform:skewX(-14deg);opacity:0;
+.hero-ray{position:absolute;top:-20%;left:-45%;width:34%;height:140%;pointer-events:none;z-index:1;transform:skewX(-14deg);opacity:0;will-change:transform,opacity;
   background:linear-gradient(100deg,transparent 0%,rgba(255,255,255,.05) 35%,rgba(255,147,228,.14) 50%,rgba(255,255,255,.05) 65%,transparent 100%);
   animation:raySweep 9s ease-in-out 3.2s infinite}
-@keyframes raySweep{0%{left:-45%;opacity:0}6%{opacity:1}26%{left:112%;opacity:.85}30%,100%{left:112%;opacity:0}}
+@keyframes raySweep{0%{transform:skewX(-14deg) translateX(0);opacity:0}6%{opacity:1}26%{transform:skewX(-14deg) translateX(462%);opacity:.85}30%,100%{transform:skewX(-14deg) translateX(462%);opacity:0}}
+@media (max-width:640px){
+  .hero .bloom{animation:bloomPulse 8s ease-in-out infinite}
+  .sparks i.orb{filter:blur(5px)}
+  .flicker{animation:flicker 2.1s ease-out both,glowPulseM 5s ease-in-out 2.3s infinite,logoBreathe 5s ease-in-out 2.3s infinite}
+}
+@keyframes glowPulseM{
+  0%,100%{filter:drop-shadow(0 0 20px rgba(255,53,188,.7)) drop-shadow(0 0 55px rgba(255,53,188,.4))}
+  50%{filter:drop-shadow(0 0 28px rgba(255,53,188,.92)) drop-shadow(0 0 75px rgba(255,53,188,.55))}
+}
 .hero-actions .btn-neon{position:relative;overflow:hidden;animation:btnGlow 3.4s ease-in-out 3.2s infinite}
 .hero-actions .btn-neon::after{content:"";position:absolute;top:0;left:-90%;width:55%;height:100%;transform:skewX(-20deg);
   background:linear-gradient(105deg,transparent,rgba(255,255,255,.5),transparent);
@@ -707,8 +716,9 @@ if(hero && !matchMedia('(prefers-reduced-motion: reduce)').matches){
     s.style.animationDelay=(-Math.random()*24).toFixed(1)+'s';
     sparks.appendChild(s);
   };
-  for(let i=0;i<26;i++)addSpark(false);
-  for(let i=0;i<6;i++)addSpark(true);
+  const small=matchMedia('(max-width:640px)').matches;
+  for(let i=0;i<(small?12:26);i++)addSpark(false);
+  for(let i=0;i<(small?3:6);i++)addSpark(true);
   hero.appendChild(sparks);
 
   const ray=document.createElement('div');ray.className='hero-ray';
