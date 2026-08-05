@@ -100,7 +100,6 @@ h2.section-title{font-family:var(--display);font-weight:400;font-size:clamp(34px
 .hero-line{font-size:clamp(15px,1.6vw,18px);line-height:1.7;color:rgba(255,255,255,.92);max-width:38ch;margin:0 auto 38px;animation:heroUp .9s cubic-bezier(.22,1,.36,1) .55s both}
 .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:heroUp .9s cubic-bezier(.22,1,.36,1) .7s both}
 .hero .bloom{animation:bloomPulse 8s ease-in-out infinite,hueDrift 14s ease-in-out infinite;transition:translate .7s cubic-bezier(.22,1,.36,1)}
-.hero .sparks{transition:transform .7s cubic-bezier(.22,1,.36,1)}
 .flicker{animation:flicker 2.1s ease-out both,glowPulse 5s ease-in-out 2.3s infinite,logoBreathe 5s ease-in-out 2.3s infinite}
 @keyframes flicker{0%{opacity:0;filter:none}8%{opacity:1}10%{opacity:.25}14%{opacity:1}17%{opacity:.4}20%,100%{opacity:1}}
 @keyframes heroUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
@@ -110,24 +109,10 @@ h2.section-title{font-family:var(--display);font-weight:400;font-size:clamp(34px
 }
 @keyframes bloomPulse{0%,100%{opacity:.75;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.09)}}
 @keyframes rulePulse{0%,100%{box-shadow:0 0 10px var(--neon)}50%{box-shadow:0 0 17px var(--neon),0 0 30px rgba(255,53,188,.4)}}
-.sparks{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
-.sparks i{position:absolute;bottom:-12px;border-radius:50%;background:var(--neon-soft);box-shadow:0 0 8px var(--neon),0 0 20px rgba(255,53,188,.55);opacity:0;animation:sparkFloat linear infinite}
-@keyframes sparkFloat{
-  0%{transform:translate(0,0) scale(.5);opacity:0}
-  8%{opacity:.9}
-  50%{transform:translate(var(--sway),-45vh) scale(1);opacity:.65}
-  100%{transform:translate(calc(var(--sway)*-.6),-92vh) scale(1.15);opacity:0}
-}
-.sparks i.orb{filter:blur(7px);box-shadow:none;background:radial-gradient(circle,rgba(255,53,188,.42),rgba(255,53,188,.12) 55%,transparent 72%)}
 @keyframes logoBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}
 @keyframes hueDrift{0%,100%{filter:hue-rotate(0deg)}50%{filter:hue-rotate(-14deg)}}
-.hero-ray{position:absolute;top:-20%;left:-45%;width:34%;height:140%;pointer-events:none;z-index:1;transform:skewX(-14deg);opacity:0;will-change:transform,opacity;
-  background:linear-gradient(100deg,transparent 0%,rgba(255,255,255,.05) 35%,rgba(255,147,228,.14) 50%,rgba(255,255,255,.05) 65%,transparent 100%);
-  animation:raySweep 9s ease-in-out 3.2s infinite}
-@keyframes raySweep{0%{transform:skewX(-14deg) translateX(0);opacity:0}6%{opacity:1}26%{transform:skewX(-14deg) translateX(462%);opacity:.85}30%,100%{transform:skewX(-14deg) translateX(462%);opacity:0}}
 @media (max-width:640px){
   .hero .bloom{animation:bloomPulse 8s ease-in-out infinite}
-  .sparks i.orb{filter:blur(5px)}
   .flicker{animation:flicker 2.1s ease-out both,glowPulseM 5s ease-in-out 2.3s infinite,logoBreathe 5s ease-in-out 2.3s infinite}
 }
 @keyframes glowPulseM{
@@ -703,39 +688,15 @@ document.querySelectorAll('.ba-stage').forEach(stage=>{
 });
 
 const hero=document.querySelector('.hero');
-if(hero && !matchMedia('(prefers-reduced-motion: reduce)').matches){
-  const sparks=document.createElement('div');sparks.className='sparks';
-  const addSpark=(orb)=>{
-    const s=document.createElement('i');
-    if(orb)s.className='orb';
-    const size=orb?(38+Math.random()*55):(2+Math.random()*4);
-    s.style.left=Math.random()*100+'%';
-    s.style.width=s.style.height=size.toFixed(1)+'px';
-    s.style.setProperty('--sway',((Math.random()*(orb?50:80)-(orb?25:40)).toFixed(0))+'px');
-    s.style.animationDuration=((orb?16:7)+Math.random()*(orb?12:9)).toFixed(1)+'s';
-    s.style.animationDelay=(-Math.random()*24).toFixed(1)+'s';
-    sparks.appendChild(s);
-  };
-  const small=matchMedia('(max-width:640px)').matches;
-  for(let i=0;i<(small?12:26);i++)addSpark(false);
-  for(let i=0;i<(small?3:6);i++)addSpark(true);
-  hero.appendChild(sparks);
-
-  const ray=document.createElement('div');ray.className='hero-ray';
-  hero.appendChild(ray);
-
-  if(matchMedia('(pointer: fine)').matches){
-    const bloomEl=hero.querySelector('.bloom');
+if(hero && !matchMedia('(prefers-reduced-motion: reduce)').matches && matchMedia('(pointer: fine)').matches){
+  const bloomEl=hero.querySelector('.bloom');
+  if(bloomEl){
     hero.addEventListener('pointermove',e=>{
       const r=hero.getBoundingClientRect();
       const x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
-      sparks.style.transform=`translate(${(x*26).toFixed(1)}px,${(y*18).toFixed(1)}px)`;
-      if(bloomEl)bloomEl.style.translate=`${(x*44).toFixed(1)}px ${(y*30).toFixed(1)}px`;
+      bloomEl.style.translate=(x*44).toFixed(1)+'px '+(y*30).toFixed(1)+'px';
     });
-    hero.addEventListener('pointerleave',()=>{
-      sparks.style.transform='';
-      if(bloomEl)bloomEl.style.translate='';
-    });
+    hero.addEventListener('pointerleave',()=>{bloomEl.style.translate=''});
   }
 }
 
