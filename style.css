@@ -958,6 +958,48 @@ h2.section-title {
     margin: 0
 }
 
+.member-bio-collapsible {
+    position: relative;
+    padding-bottom: 5px
+}
+
+.member-bio-collapsible .bio-toggle {
+    position: absolute;
+    right : 2px;
+    bottom :-15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--neon);
+    font: inherit;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    vertical-align: baseline;
+    line-height: 1;
+}
+
+.member-bio-collapsible .bio-toggle:hover {
+    color: var(--neon-soft)
+}
+
+.member-bio-collapsible .bio-more {
+    display: none
+}
+
+.member-bio-collapsible.expanded .bio-more {
+    display: inline
+}
+
+.member-bio-collapsible.expanded .bio-toggle {
+    display: inline
+}
+
 .member-tags {
     margin: 18px 0 0;
     padding-top: 16px;
@@ -1225,7 +1267,7 @@ h2.section-title {
     border: 1px solid var(--hair-dark);
     border-radius: 100px;
     padding: 10px 20px;
-    margin-bottom: 26px
+    margin-bottom: 26px;
 }
 
 .rev-badge .stars {
