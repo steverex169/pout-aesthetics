@@ -67,6 +67,25 @@ if (baFilter) {
     });
 }
 
+const marlaBio = [...document.querySelectorAll('.member')].find(card => card.querySelector('.member-name')?.textContent.trim() === 'Marla Liberatore')?.querySelector('.member-bio');
+if (marlaBio) {
+    const html = marlaBio.innerHTML;
+    const marker = 'Philadelphia';
+    const idx = html.indexOf(marker);
+    if (idx !== -1) {
+        const before = html.slice(0, idx + marker.length);
+        const after = html.slice(idx + marker.length);
+        marlaBio.classList.add('member-bio-collapsible');
+        marlaBio.innerHTML = before + '<button class="bio-toggle" type="button" aria-expanded="false">Read more</button><span class="bio-more">' + after + '</span>';
+        const toggle = marlaBio.querySelector('.bio-toggle');
+        toggle.addEventListener('click', () => {
+            const expanded = marlaBio.classList.toggle('expanded');
+            toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+            toggle.textContent = expanded ? 'Read less' : 'Read more';
+        });
+    }
+}
+
 const termsAccepted = document.getElementById('termsAccepted');
 const termsStatus = document.getElementById('termsStatus');
 if (termsAccepted && termsStatus) {
