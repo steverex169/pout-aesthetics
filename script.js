@@ -67,35 +67,15 @@ if (baFilter) {
     });
 }
 
-function addMarlaReadMore(card, marker, inline = false) {
-    if (card.querySelector('.member-name')?.textContent.trim() !== 'Marla Liberatore') return;
+document.querySelectorAll('.member-bio-collapsible .bio-toggle').forEach(toggle => {
+    const bio = toggle.closest('.member-bio-collapsible');
+    if (!bio) return;
 
-    const marlaBio = card.querySelector('.member-bio');
-    if (!marlaBio || marlaBio.classList.contains('member-bio-collapsible')) return;
-
-    const html = marlaBio.innerHTML;
-    const idx = html.indexOf(marker);
-    if (idx === -1) return;
-
-    const before = html.slice(0, idx + marker.length);
-    const after = html.slice(idx + marker.length);
-    marlaBio.classList.add('member-bio-collapsible');
-    if (inline) marlaBio.classList.add('injector-inline');
-    marlaBio.innerHTML = before + '<button class="bio-toggle" type="button" aria-expanded="false">Read more</button><span class="bio-more">' + after + '</span>';
-    const toggle = marlaBio.querySelector('.bio-toggle');
     toggle.addEventListener('click', () => {
-        const expanded = marlaBio.classList.toggle('expanded');
+        const expanded = bio.classList.toggle('expanded');
         toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
         toggle.textContent = expanded ? 'Read less' : 'Read more';
     });
-}
-
-document.querySelectorAll('.member').forEach(card => {
-    if (card.closest('[data-view="/injectors"]')) {
-        addMarlaReadMore(card, 'She eventually took the leap into plastics', true);
-        return;
-    }
-    addMarlaReadMore(card, 'Philadelphia', false);
 });
 
 const termsAccepted = document.getElementById('termsAccepted');
