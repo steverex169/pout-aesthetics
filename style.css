@@ -984,6 +984,20 @@ h2.section-title {
     line-height: 1;
 }
 
+.member-bio-collapsible.injector-inline .bio-toggle {
+    position: absolute;
+    right: 2px;
+    bottom: -15px;
+}
+
+.member-bio-collapsible.injector-inline .bio-more {
+    display: none;
+}
+
+.member-bio-collapsible.injector-inline.expanded .bio-more {
+    display: block;
+}
+
 .member-bio-collapsible .bio-toggle:hover {
     color: var(--neon-soft)
 }
