@@ -57,24 +57,74 @@ if (hero && !matchMedia('(prefers-reduced-motion: reduce)').matches && matchMedi
     }
 }
 
-const baFilter = document.getElementById('baFilter');
-if (baFilter) {
-    baFilter.addEventListener('click', e => {
-        const b = e.target.closest('button'); if (!b) return;
-        [...baFilter.children].forEach(x => x.classList.toggle('on', x === b));
-        const f = b.dataset.f;
-        document.querySelectorAll('#baGrid .ba-case').forEach(c => { c.style.display = (f === 'all' || c.dataset.cat === f) ? '' : 'none' });
+const baSearch = document.getElementById('baSearch');
+const baFilterSelect = document.getElementById('baFilterSelect');
+const baNoResults = document.getElementById('baNoResults');
+const baCases = [...document.querySelectorAll('#baGrid .ba-case')];
+
+function filterBAResults() {
+    const search = (baSearch?.value || '').trim().toLowerCase();
+    const category = baFilterSelect?.value || 'all';
+
+    let visibleCount = 0;
+
+    baCases.forEach(card => {
+        const cardCategory = (card.dataset.cat || '').toLowerCase();
+        const cardText = card.textContent.toLowerCase();
+
+        const matchesCategory =
+            category === 'all' ||
+            cardCategory === category;
+
+        const matchesSearch =
+            !search ||
+            cardText.includes(search) ||
+            cardCategory.includes(search);
+
+        const show = matchesCategory && matchesSearch;
+
+        card.style.display = show ? '' : 'none';
+
+        if (show) {
+            visibleCount++;
+        }
     });
+
+    if (baNoResults) {
+        baNoResults.hidden = visibleCount !== 0;
+    }
 }
 
-document.querySelectorAll('.member-bio-collapsible .bio-toggle').forEach(toggle => {
-    const bio = toggle.closest('.member-bio-collapsible');
-    if (!bio) return;
+if (baSearch) {
+    baSearch.addEventListener('input', filterBAResults);
+}
 
-    toggle.addEventListener('click', () => {
+if (baFilterSelect) {
+    baFilterSelect.addEventListener('change', filterBAResults);
+}
+
+document.querySelectorAll('.team .member').forEach(card => {
+    const bio = card.querySelector('.member-bio');
+    const button = card.querySelector('.team-read-more');
+
+    if (!bio || !button) return;
+
+    button.setAttribute('aria-expanded', 'false');
+
+    button.addEventListener('click', () => {
         const expanded = bio.classList.toggle('expanded');
-        toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-        toggle.textContent = expanded ? 'Read less' : 'Read more';
+
+        /* expand only this card */
+        card.classList.toggle('expanded-card', expanded);
+
+        button.textContent = expanded
+            ? 'Read less'
+            : 'Read more';
+
+        button.setAttribute(
+            'aria-expanded',
+            expanded ? 'true' : 'false'
+        );
     });
 });
 
