@@ -880,151 +880,203 @@ h2.section-title {
 /* ---------- team ---------- */
 .team {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-    align-items: start
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+    align-items: start;
 }
 
-@media(max-width:900px) {
+.member {
+    border: 1px solid var(--hair);
+    background: var(--ink-2);
+    transition: .35s ease;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    align-self: start;
+}
+
+.member:hover {
+    border-color: rgba(255, 53, 188, .5);
+    box-shadow: 0 0 40px rgba(255, 53, 188, .12);
+}
+
+.portrait {
+    aspect-ratio: 4 / 5;
+    width: 100%;
+    overflow: hidden;
+    flex-shrink: 0;
+
+    background:
+        radial-gradient(circle at 50% 38%,
+            rgba(255, 53, 188, .20),
+            transparent 60%),
+        linear-gradient(160deg, #1b1b1f, #0d0d0f);
+
+    border-bottom: 1px solid var(--hair);
+}
+
+.portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.member-body {
+    padding: 22px 20px 24px;
+    display: flex;
+    flex-direction: column;
+    height: 265px;
+}
+
+.member.expanded-card .member-body {
+    height: auto;
+    min-height: 265px;
+}
+
+.member-name {
+    font-family: var(--display);
+    font-size: 23px;
+    font-weight: 400;
+    margin: 0 0 6px;
+}
+
+.member-role {
+    font-size: 9px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--neon);
+    margin: 0 0 16px;
+
+    /* keeps name/role area consistent */
+    min-height: 32px;
+}
+
+.member-bio {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, .85);
+    margin: 0;
+
+    /* same visible bio height on every card */
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.member-bio.expanded {
+    display: block;
+    overflow: visible;
+}
+
+/* Read More */
+.team-read-more {
+    margin-top: auto;
+    padding-top: 18px;
+
+    border: 0;
+    background: none;
+    color: var(--neon);
+
+    font-family: var(--body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+
+    cursor: pointer;
+    text-align: left;
+}
+
+.team-read-more:hover {
+    color: var(--neon-soft);
+}
+
+
+/* responsive */
+@media(max-width:1050px) {
     .team {
-        grid-template-columns: repeat(2, 1fr)
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media(max-width:620px) {
     .team {
         grid-template-columns: 1fr;
-        gap: 26px
+        gap: 26px;
     }
 }
 
-.member {
-    border: 1px solid var(--hair);
-    background: var(--ink-2);
-    transition: .35s ease
-}
+/* ---------- before & after ---------- */
 
-.member:hover {
-    border-color: rgba(255, 53, 188, .5);
-    box-shadow: 0 0 40px rgba(255, 53, 188, .12)
-}
-
-.portrait {
-    aspect-ratio: 4/5;
-    background: radial-gradient(circle at 50% 38%, rgba(255, 53, 188, .20), transparent 60%), linear-gradient(160deg, #1b1b1f, #0d0d0f);
+/* Before & After search + filter */
+.ba-tools {
     display: flex;
     align-items: center;
-    justify-content: center;
-    border-bottom: 1px solid var(--hair)
+    gap: 12px;
+    margin-bottom: 32px;
 }
 
-.portrait img {
+.ba-search-wrap {
+    flex: 1;
+}
+
+.ba-search-wrap input {
     width: 100%;
-    height: 100%;
-    object-fit: cover
-}
-
-.portrait span {
-    font-size: 10px;
-    letter-spacing: .28em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, .3)
-}
-
-.member-body {
-    padding: 26px 24px 30px
-}
-
-.member-name {
-    font-family: var(--display);
-    font-size: 25px;
-    font-weight: 400;
-    margin: 0 0 6px
-}
-
-.member-role {
-    font-size: 10px;
-    letter-spacing: .24em;
-    text-transform: uppercase;
-    font-weight: 600;
-    color: var(--neon);
-    margin: 0 0 16px
-}
-
-.member-bio {
-    font-size: 14px;
-    line-height: 1.72;
-    color: rgba(255, 255, 255, .85);
-    margin: 0
-}
-
-.member-bio-collapsible {
-    position: relative;
-    padding-bottom: 5px
-}
-
-.member-bio-collapsible .bio-toggle {
-    position: absolute;
-    right : 2px;
-    bottom :-15px;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    padding: 0;
-    border: 0;
-    background: none;
-    color: var(--neon);
+    height: 48px;
+    padding: 0 16px;
+    border: 1px solid var(--ash);
+    border-radius: 8px;
+    background: transparent;
+    color: inherit;
     font: inherit;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: .14em;
-    text-transform: uppercase;
+    outline: none;
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.ba-search-wrap input:focus {
+    border-color: var(--pink, #ff2aa1);
+}
+
+.ba-search-wrap input::-webkit-search-cancel-button {
     cursor: pointer;
-    vertical-align: baseline;
-    line-height: 1;
 }
 
-.member-bio-collapsible.injector-inline .bio-toggle {
-    position: absolute;
-    right: 2px;
-    bottom: -15px;
+.ba-filter-wrap select {
+    height: 48px;
+    min-width: 190px;
+    padding: 0 42px 0 16px;
+    border: 1px solid var(--ash);
+    border-radius: 8px;
+    background: var(--ink);
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    outline: none;
 }
 
-.member-bio-collapsible.injector-inline .bio-more {
-    display: none;
+.ba-filter-wrap select:focus {
+    border-color: var(--pink, #ff2aa1);
 }
 
-.member-bio-collapsible.injector-inline.expanded .bio-more {
-    display: block;
+.ba-no-results {
+    padding: 30px 0;
+    text-align: center;
+    opacity: .65;
 }
 
-.member-bio-collapsible .bio-toggle:hover {
-    color: var(--neon-soft)
+@media (max-width: 640px) {
+    .ba-tools {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .ba-filter-wrap select {
+        width: 100%;
+    }
 }
 
-.member-bio-collapsible .bio-more {
-    display: none
-}
-
-.member-bio-collapsible.expanded .bio-more {
-    display: inline
-}
-
-.member-bio-collapsible.expanded .bio-toggle {
-    display: inline
-}
-
-.member-tags {
-    margin: 18px 0 0;
-    padding-top: 16px;
-    border-top: 1px solid var(--hair);
-    font-size: 11px;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, .45)
-}
-
-/* ---------- before & after ---------- */
 .ba-filter {
     display: flex;
     gap: 10px;
