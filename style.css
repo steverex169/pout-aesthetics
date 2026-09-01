@@ -711,6 +711,153 @@ h2.section-title {
     }
 }
 
+/* ===================================
+   POUT ANIMATED MOUTH
+=================================== */
+
+.hero-brand {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-mouth {
+    position: relative;
+
+    /* center the complete logo in hero */
+    width: min(560px, 80vw);
+    margin: 0 auto;
+
+    aspect-ratio: 613 / 262;
+
+    /* center of gap between P and U */
+    --mouth-center: 40%;
+
+    /* lips size */
+    --lip-width: 36.5%;
+
+    /* vertical positions */
+    --upper-top: -8%;
+    --lower-top: 8%;
+}
+
+
+/* P + U + T + AESTHETICS image */
+.hero-mouth-text {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    /* IMPORTANT */
+    object-fit: cover;
+
+    z-index: 1;
+}
+
+
+/* shared lip positioning */
+.hero-lip {
+    position: absolute;
+
+    /* exact center between P and U */
+    left: var(--mouth-center);
+    translate: -50% 0;
+
+    width: var(--lip-width);
+    height: auto;
+    max-width: none;
+
+    pointer-events: none;
+
+    transform-origin: center center;
+    will-change: transform;
+}
+
+
+/* upper */
+.hero-lip-upper {
+    top: var(--upper-top);
+    z-index: 3;
+
+    animation:
+        poutUpperLip 2s cubic-bezier(.4, 0, .2, 1) infinite;
+}
+
+
+/* lower */
+.hero-lip-lower {
+    top: var(--lower-top);
+    z-index: 2;
+
+    animation:
+        poutLowerLip 2s cubic-bezier(.4, 0, .2, 1) infinite;
+}
+
+
+@keyframes poutUpperLip {
+    0%,
+    20% {
+        transform: translateY(0);
+    }
+
+    35%,
+    50% {
+        transform: translateY(4%);
+    }
+
+    65%,
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes poutLowerLip {
+    0%,
+    20% {
+        transform: translateY(0);
+    }
+
+    35%,
+    50% {
+        transform: translateY(-4%);
+    }
+
+    65%,
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+/* AESTHETICS stays completely static */
+.hero-aesthetics {
+    margin-top: 4px;
+
+    font-family: var(--body);
+    font-size: clamp(13px, 2vw, 21px);
+    font-weight: 300;
+
+    letter-spacing: .48em;
+    padding-left: .48em;
+
+    color: rgba(255, 255, 255, .9);
+}
+
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+    .hero-lip-upper,
+    .hero-lip-lower {
+        animation: none !important;
+    }
+}
+
 /* ---------- page hero ---------- */
 .phero {
     position: relative;
@@ -801,80 +948,237 @@ h2.section-title {
 }
 
 /* ---------- services ---------- */
+/* =============================
+   SERVICES
+============================= */
+
 .svc-list {
-    border-top: 1px solid var(--hair-dark)
+    border-top: 1px solid var(--hair-dark);
 }
 
 .svc {
     display: grid;
-    grid-template-columns: 34px 1fr 1.15fr;
-    gap: 26px;
-    align-items: baseline;
+
+    /* number | image | content */
+    grid-template-columns: 34px 120px minmax(0, 1fr);
+
+    gap: 24px;
+    align-items: center;
+
     padding: 28px 4px;
+
     border-bottom: 1px solid var(--hair-dark);
+
     position: relative;
-    transition: padding-left .3s ease
+
+    transition:
+        padding-left .3s ease,
+        background .3s ease;
 }
 
-.svc:hover {
-    padding-left: 14px
-}
 
+/* small pink line on hover */
 .svc::after {
     content: "";
+
     position: absolute;
+
     left: 0;
     bottom: -1px;
-    height: 1px;
+
     width: 0;
+    height: 1px;
+
     background: var(--neon);
-    transition: width .45s ease
+
+    transition: width .4s ease;
 }
+
 
 .svc:hover::after {
-    width: 100%
+    width: 100%;
 }
 
+
+/* SERVICE NUMBER */
 .svc-num {
+    align-self: start;
+
+    padding-top: 7px;
+
     font-size: 10px;
+
     letter-spacing: .16em;
+
     font-weight: 600;
+
     color: var(--neon);
-    font-variant-numeric: tabular-nums
+
+    font-variant-numeric: tabular-nums;
 }
+
+
+/* SMALL PROCEDURE IMAGE */
+.svc-thumb {
+    width: 120px;
+    height: 120px;
+
+    overflow: hidden;
+
+    border-radius: 6px;
+
+    background: #eee;
+}
+
+
+.svc-thumb img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform .4s ease;
+}
+
+
+.svc:hover .svc-thumb img {
+    transform: scale(1.04);
+}
+
+
+/* CONTENT */
+.svc-main {
+    min-width: 0;
+}
+
 
 .svc-name {
     font-family: var(--display);
-    font-size: clamp(22px, 2.6vw, 30px);
+
+    font-size: clamp(24px, 2.6vw, 31px);
+
     font-weight: 400;
-    line-height: 1.16
+
+    line-height: 1.15;
+
+    margin-bottom: 10px;
+
+    color: var(--ink);
 }
+
 
 .svc-copy {
+    max-width: 650px;
+
+    margin: 0 0 15px;
+
     font-size: 14.5px;
+
     line-height: 1.7;
-    color: var(--ash)
+
+    color: var(--ash);
 }
 
-.svc-detail {
+
+/* EXTRA INFORMATION */
+.svc-points {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px 20px;
+}
+
+
+.svc-points span {
     font-size: 11px;
-    letter-spacing: .16em;
-    text-transform: uppercase;
-    color: var(--neon);
-    font-weight: 600;
-    margin-top: 10px;
-    display: block
+
+    line-height: 1.6;
+
+    color: var(--ash);
 }
 
+
+.svc-points b {
+    margin-right: 5px;
+
+    color: var(--neon);
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: .08em;
+
+    font-size: 9px;
+}
+
+
+/* TABLET */
 @media(max-width:760px) {
+
     .svc {
-        grid-template-columns: 28px 1fr;
-        gap: 8px 18px
+        grid-template-columns: 28px 95px minmax(0, 1fr);
+
+        gap: 16px;
+
+        padding: 24px 0;
     }
+
+
+    .svc-thumb {
+        width: 95px;
+        height: 95px;
+    }
+
+
+    .svc-name {
+        font-size: 24px;
+    }
+
+}
+
+
+/* MOBILE */
+@media(max-width:560px) {
+
+    .svc {
+        grid-template-columns: 24px 80px minmax(0, 1fr);
+
+        gap: 12px;
+
+        align-items: start;
+    }
+
+
+    .svc-thumb {
+        width: 80px;
+        height: 80px;
+    }
+
+
+    .svc-name {
+        font-size: 21px;
+
+        margin-bottom: 7px;
+    }
+
 
     .svc-copy {
-        grid-column: 2/3
+        font-size: 13px;
+
+        line-height: 1.6;
+
+        margin-bottom: 10px;
     }
+
+
+    .svc-points {
+        display: grid;
+
+        gap: 3px;
+    }
+
 }
 
 /* ---------- team ---------- */
@@ -1326,84 +1630,223 @@ h2.section-title {
 }
 
 /* ---------- reviews ---------- */
-.rev-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    border: 1px solid var(--hair-dark);
-    border-radius: 100px;
-    padding: 10px 20px;
-    margin-bottom: 26px;
+/* ==========================
+   REVIEWS SCROLL
+========================== */
+
+.reviews-marquee {
+    width: 100%;
+    overflow: hidden;
+
+    margin-top: 10px;
+
+    /* soft fade on both sides */
+    -webkit-mask-image:
+        linear-gradient(
+            to right,
+            transparent,
+            #000 5%,
+            #000 95%,
+            transparent
+        );
+
+    mask-image:
+        linear-gradient(
+            to right,
+            transparent,
+            #000 5%,
+            #000 95%,
+            transparent
+        );
 }
 
-.rev-badge .stars {
-    color: var(--neon);
-    letter-spacing: .14em;
-    font-size: 13px
+
+/* moving container */
+.reviews-track {
+    display: flex;
+
+    width: max-content;
+
+    animation:
+        reviewScroll 42s linear infinite;
 }
 
-.rev-badge span {
-    font-size: 11px;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    font-weight: 600;
-    color: var(--ash)
+
+/* pause when user interacts */
+.reviews-marquee:hover .reviews-track {
+    animation-play-state: paused;
 }
 
-.quotes {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border-top: 1px solid var(--hair-dark)
+
+/* each repeated set */
+.reviews-group {
+    display: flex;
+    gap: 22px;
+
+    padding-right: 22px;
 }
 
-@media(max-width:900px) {
-    .quotes {
-        grid-template-columns: 1fr
-    }
-}
 
+/* REVIEW CARD */
 .quote {
-    padding: 42px 32px;
-    border-right: 1px solid var(--hair-dark);
-    border-bottom: 1px solid var(--hair-dark)
+    width: 360px;
+    min-width: 360px;
+    min-height: 270px;
+
+    margin: 0;
+
+    padding: 30px 30px 28px;
+
+    display: flex;
+    flex-direction: column;
+
+    background: rgba(255, 255, 255, .55);
+
+    border:
+        1px solid var(--hair-dark);
+
+    border-radius: 14px;
+
+    transition:
+        transform .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
 }
 
-.quote:last-child {
-    border-right: none
+
+.quote:hover {
+    transform: translateY(-5px);
+
+    border-color:
+        rgba(255, 53, 188, .4);
+
+    box-shadow:
+        0 16px 40px
+        rgba(122, 20, 86, .08);
 }
 
-@media(max-width:900px) {
-    .quote {
-        border-right: none;
-        padding: 36px 4px
-    }
+
+/* STARS */
+.review-stars {
+    color: var(--neon);
+
+    font-size: 13px;
+
+    letter-spacing: .12em;
+
+    margin-bottom: 17px;
 }
 
+
+/* quotation mark */
 .quote-mark {
     font-family: var(--display);
-    font-size: 56px;
-    line-height: .6;
+
+    font-size: 52px;
+
+    line-height: .5;
+
     color: var(--neon);
+
     display: block;
-    margin-bottom: 18px
+
+    margin-bottom: 17px;
 }
 
+
+/* review text */
 .quote p {
     font-family: var(--display);
+
     font-style: italic;
+
     font-weight: 400;
-    font-size: 19px;
+
+    font-size: 18px;
+
     line-height: 1.55;
-    margin: 0 0 22px;
-    color: var(--ink)
+
+    margin: 0 0 24px;
+
+    color: var(--ink);
 }
 
+
+/* reviewer/source */
 .quote-by {
-    font-size: 10px;
-    letter-spacing: .26em;
+    margin-top: auto;
+
+    font-size: 9px;
+
+    letter-spacing: .24em;
+
     text-transform: uppercase;
+
     font-weight: 600;
-    color: var(--ash)
+
+    color: var(--ash);
+}
+
+
+/* continuous movement */
+@keyframes reviewScroll {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+
+}
+
+
+/* MOBILE */
+@media(max-width:600px) {
+
+    .quote {
+        width: 285px;
+        min-width: 285px;
+        min-height: 250px;
+
+        padding: 25px 24px;
+    }
+
+
+    .quote p {
+        font-size: 17px;
+    }
+
+
+    .reviews-group {
+        gap: 14px;
+
+        padding-right: 14px;
+    }
+
+
+    .reviews-track {
+        animation-duration: 34s;
+    }
+
+}
+
+
+/* accessibility */
+@media(prefers-reduced-motion: reduce) {
+
+    .reviews-track {
+        animation: none;
+    }
+
+    .reviews-marquee {
+        overflow-x: auto;
+
+        mask-image: none;
+        -webkit-mask-image: none;
+    }
+
 }
 
 /* ---------- book ---------- */
