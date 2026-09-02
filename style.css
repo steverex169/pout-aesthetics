@@ -1558,21 +1558,27 @@ h2.section-title {
 .ba-layer {
     position: absolute;
     inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--display);
-    font-size: 26px;
-    color: rgba(255, 255, 255, .34)
+    overflow: hidden;
+}
+
+.ba-layer img {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    pointer-events: none;
+    user-select: none;
 }
 
 .ba-before {
-    background: linear-gradient(150deg, #191920, #0c0c0e)
+    z-index: 1;
 }
 
 .ba-after {
-    background: radial-gradient(circle at 50% 40%, rgba(255, 53, 188, .22), transparent 62%), linear-gradient(150deg, #26141d, #0e0b0d);
-    clip-path: inset(0 0 0 50%)
+    z-index: 2;
+    clip-path: inset(0 0 0 50%);
 }
 
 .ba-handle {
@@ -1583,7 +1589,8 @@ h2.section-title {
     width: 2px;
     background: var(--neon);
     box-shadow: 0 0 14px var(--neon);
-    pointer-events: none
+    pointer-events: none;
+    z-index: 4;
 }
 
 .ba-knob {
@@ -1611,7 +1618,7 @@ h2.section-title {
     text-transform: uppercase;
     font-weight: 600;
     color: rgba(255, 255, 255, .5);
-    z-index: 3
+    z-index: 5
 }
 
 .ba-tagline.l {
