@@ -129,7 +129,7 @@ h2.section-title {
     text-transform: uppercase;
     padding: 17px 34px;
     border-radius: 2px;
-    transition: .28s ease
+    transition: .2s ease
 }
 
 .btn-neon {
@@ -242,13 +242,28 @@ h2.section-title {
     color: var(--neon);
     padding: 11px 20px;
     border-radius: 2px;
-    transition: .25s
+    transition: .28s ease;
+    position: relative;
+    overflow: hidden
 }
 
+/* Match the "Book your glow" button hover glow in the header */
 .nav-book:hover {
     background: var(--neon);
     color: #fff;
-    box-shadow: 0 0 22px rgba(255, 53, 188, .5)
+    transform: translateY(-1px)
+}
+
+.nav-book::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -90%;
+    width: 55%;
+    height: 100%;
+    transform: skewX(-20deg);
+    background: linear-gradient(105deg, transparent, rgba(255, 255, 255, .5), transparent);
+    animation: btnShine 3.4s ease-in-out 1.2s infinite
 }
 
 @media(max-width:520px) {
@@ -784,7 +799,7 @@ h2.section-title {
 .hero-actions .btn-neon {
     position: relative;
     overflow: hidden;
-    animation: btnGlow 3.4s ease-in-out 3.2s infinite
+    animation: btnGlow 3.2s ease-in-out 1.2s infinite
 }
 
 .hero-actions .btn-neon::after {
@@ -796,7 +811,7 @@ h2.section-title {
     height: 100%;
     transform: skewX(-20deg);
     background: linear-gradient(105deg, transparent, rgba(255, 255, 255, .5), transparent);
-    animation: btnShine 3.4s ease-in-out 3.2s infinite
+    animation: btnShine 3.4s ease-in-out 1.2s infinite
 }
 
 @keyframes btnGlow {
@@ -827,7 +842,6 @@ h2.section-title {
 /* ===================================
    POUT ANIMATED MOUTH
 =================================== */
-
 .hero-brand {
     width: 100%;
     display: flex;
@@ -887,8 +901,11 @@ h2.section-title {
 
     pointer-events: none;
 
+    /* cleaner lip corners + smoother GPU animation */
+    clip-path: inset(0 0.7% 0 0.7%);
     transform-origin: center center;
     will-change: transform;
+    backface-visibility: hidden;
 }
 
 
@@ -898,7 +915,7 @@ h2.section-title {
     z-index: 3;
 
     animation:
-        poutUpperLip 2s cubic-bezier(.4, 0, .2, 1) infinite;
+        poutUpperLip 2.8s cubic-bezier(.45, 0, .55, 1) infinite;
 }
 
 
@@ -908,43 +925,43 @@ h2.section-title {
     z-index: 2;
 
     animation:
-        poutLowerLip 2s cubic-bezier(.4, 0, .2, 1) infinite;
+        poutLowerLip 2.8s cubic-bezier(.45, 0, .55, 1) infinite;
 }
 
 
 @keyframes poutUpperLip {
 
     0%,
-    20% {
-        transform: translateY(0);
+    18% {
+        transform: translate3d(0, 0, 0);
     }
 
-    35%,
-    50% {
-        transform: translateY(4%);
+    42%,
+    58% {
+        transform: translate3d(0, 2.4%, 0);
     }
 
-    65%,
+    82%,
     100% {
-        transform: translateY(0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
 @keyframes poutLowerLip {
 
     0%,
-    20% {
-        transform: translateY(0);
+    18% {
+        transform: translate3d(0, 0, 0);
     }
 
-    35%,
-    50% {
-        transform: translateY(-4%);
+    42%,
+    58% {
+        transform: translate3d(0, -2.4%, 0);
     }
 
-    65%,
+    82%,
     100% {
-        transform: translateY(0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
@@ -1565,7 +1582,7 @@ h2.section-title {
     width: 100%;
     height: 100%;
     max-width: none;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
     display: block;
     pointer-events: none;
@@ -1613,21 +1630,29 @@ h2.section-title {
 .ba-tagline {
     position: absolute;
     top: 14px;
-    font-size: 10px;
-    letter-spacing: .24em;
+    z-index: 5;
+    padding: 7px 10px;
+    border-radius: 3px;
+    background: rgba(10, 10, 11, .68);
+    backdrop-filter: blur(5px);
+    font-size: 9px;
+    line-height: 1;
+    letter-spacing: .18em;
     text-transform: uppercase;
-    font-weight: 600;
-    color: rgba(255, 255, 255, .5);
-    z-index: 5
+    font-weight: 700;
+    color: #fff;
+    pointer-events: none;
 }
 
 .ba-tagline.l {
-    left: 16px
+    left: 14px;
 }
 
 .ba-tagline.r {
-    right: 16px;
-    color: var(--neon-soft)
+    right: 14px;
+    color: #fff;
+    background: rgba(255, 53, 188, .82);
+    box-shadow: 0 0 14px rgba(255, 53, 188, .22);
 }
 
 .ba-info {
@@ -1967,20 +1992,44 @@ h2.section-title {
 }
 
 /* ==========================
-   FAQ
+   FAQ — COMPACT / MINIMAL
 ========================== */
 
 .faq-section {
     background: var(--paper);
     color: var(--ink);
+    padding: 48px 0;
+}
+
+.faq-section .head-split {
+    max-width: 800px;
+    margin: 0 auto 26px;
+    gap: 24px;
+}
+
+.faq-section .eyebrow {
+    font-size: 9px;
+    margin-bottom: 10px;
+}
+
+.faq-section h2.section-title {
+    font-size: clamp(26px, 3.5vw, 38px);
+    line-height: 1.05;
+    margin: 0;
 }
 
 .faq-section .section-title em {
     font-style: italic;
 }
 
+.faq-section .section-intro {
+    max-width: 36ch;
+    font-size: 13.5px;
+    line-height: 1.55;
+}
+
 .faq-list {
-    max-width: 900px;
+    max-width: 800px;
     margin: 0 auto;
     border-top: 1px solid var(--hair-dark);
 }
@@ -1995,26 +2044,20 @@ h2.section-title {
 /* QUESTION */
 .faq-item summary {
     list-style: none;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    gap: 25px;
-
-    padding: 27px 4px;
-
+    gap: 16px;
+    padding: 15px 2px;
     cursor: pointer;
-
     font-family: var(--display);
-    font-size: clamp(20px, 2.2vw, 26px);
+    font-size: clamp(16px, 1.5vw, 20px);
     font-weight: 400;
-
+    line-height: 1.25;
     color: var(--ink);
-
     transition:
-        color .25s ease,
-        padding-left .25s ease;
+        color .2s ease,
+        padding-left .2s ease;
 }
 
 
@@ -2026,42 +2069,35 @@ h2.section-title {
 
 .faq-item summary:hover {
     color: var(--neon);
-    padding-left: 10px;
+    padding-left: 6px;
 }
 
 
 /* PLUS */
 .faq-icon {
-    width: 34px;
-    height: 34px;
-
+    width: 25px;
+    height: 25px;
     flex-shrink: 0;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border: 1px solid var(--hair-dark);
     border-radius: 50%;
-
     font-family: var(--body);
-    font-size: 21px;
+    font-size: 16px;
     font-weight: 300;
-
     color: var(--neon);
-
     transition:
-        transform .3s ease,
-        background .3s ease,
-        color .3s ease,
-        border-color .3s ease;
+        transform .25s ease,
+        background .25s ease,
+        color .25s ease,
+        border-color .25s ease;
 }
 
 
 /* OPEN */
 .faq-item[open] .faq-icon {
     transform: rotate(45deg);
-
     background: var(--neon);
     color: #fff;
     border-color: var(--neon);
@@ -2075,42 +2111,59 @@ h2.section-title {
 
 /* ANSWER */
 .faq-answer {
-    padding:
-        0 55px 28px 4px;
+    padding: 0 38px 16px 2px;
 }
 
 
 .faq-answer p {
-    max-width: 700px;
-
-    margin: 0 0 16px;
-
+    max-width: 680px;
+    margin: 0 0 10px;
     color: var(--ash);
+    font-size: 13px;
+    line-height: 1.6;
+}
 
-    font-size: 15px;
-    line-height: 1.75;
+
+.faq-answer .textlink {
+    font-size: 9px;
+    letter-spacing: .16em;
 }
 
 
 /* MOBILE */
 @media(max-width:600px) {
 
-    .faq-item summary {
-        padding: 22px 0;
+    .faq-section {
+        padding: 36px 0;
+    }
 
-        font-size: 20px;
+    .faq-section .head-split {
+        gap: 10px;
+        margin-bottom: 18px;
+    }
+
+    .faq-section h2.section-title {
+        font-size: 27px;
+    }
+
+    .faq-section .section-intro {
+        font-size: 13px;
+    }
+
+    .faq-item summary {
+        padding: 14px 0;
+        gap: 12px;
+        font-size: 16.5px;
     }
 
     .faq-answer {
-        padding:
-            0 10px 24px 0;
+        padding: 0 32px 14px 0;
     }
 
     .faq-icon {
-        width: 30px;
-        height: 30px;
-
-        font-size: 19px;
+        width: 24px;
+        height: 24px;
+        font-size: 15px;
     }
 }
 
