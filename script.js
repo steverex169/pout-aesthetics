@@ -14,7 +14,7 @@ function route() {
     const hash = (location.hash.replace('#', '') || '/');
     const target = views.find(v => v.dataset.view === hash) || views[0];
     views.forEach(v => v.classList.toggle('active', v === target));
-    document.querySelectorAll('#menuLinks a').forEach(a => a.classList.toggle('current', a.getAttribute('href') === '#' + hash));
+    document.querySelectorAll('#menuLinks a, #desktopNav a').forEach(a => a.classList.toggle('current', a.getAttribute('href') === '#' + hash));
     setMenu(false);
     window.scrollTo({ top: 0, behavior: 'instant' });
     reveal(target);
@@ -29,19 +29,13 @@ function reveal(scope) {
     });
 }
 
-document.querySelectorAll('.ba-stage').forEach(stage => {
-    const after = stage.querySelector('.ba-after'), handle = stage.querySelector('.ba-handle');
-    let dragging = false;
-    const move = x => {
-        const r = stage.getBoundingClientRect();
-        let p = Math.max(2, Math.min(98, ((x - r.left) / r.width) * 100));
-        after.style.clipPath = 'inset(0 0 0 ' + p + '%)';
-        handle.style.left = p + '%';
-    };
-    stage.addEventListener('pointerdown', e => { dragging = true; stage.setPointerCapture(e.pointerId); move(e.clientX) });
-    stage.addEventListener('pointermove', e => { if (dragging) move(e.clientX) });
-    stage.addEventListener('pointerup', () => dragging = false);
-    stage.addEventListener('pointercancel', () => dragging = false);
+// Boulevard booking: open the overlay when it has loaded, otherwise fall back to the widget link
+document.addEventListener('click', e => {
+    const link = e.target.closest('a[data-blvd]');
+    if (!link || !window.blvd || typeof blvd.openBookingWidget !== 'function') return;
+    e.preventDefault();
+    setMenu(false);
+    blvd.openBookingWidget({ urlParams: {} });
 });
 
 const hero = document.querySelector('.hero');
