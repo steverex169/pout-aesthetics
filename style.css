@@ -75,6 +75,10 @@ img {
     color: var(--ink)
 }
 
+.hero-eyebrow {
+    text-align: center;
+}
+
 .eyebrow {
     font-size: 11px;
     letter-spacing: .34em;
@@ -670,6 +674,14 @@ h2.section-title {
 
 .flicker {
     animation: flicker 2.1s ease-out both, glowPulse 5s ease-in-out 2.3s infinite, logoBreathe 5s ease-in-out 2.3s infinite
+}
+
+.review-cta {
+    display: block;
+    width: fit-content;
+    margin: 30px auto 0;
+    text-align: center;
+    text-decoration: underline;
 }
 
 @keyframes flicker {
