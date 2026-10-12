@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Facial Balancing in Sicklerville, NJ | POUT Aesthetics</title>
+
+    <meta name="description"
+        content="Learn about personalized facial balancing in Sicklerville, NJ. POUT Aesthetics creates thoughtful injectable treatment plans based on your features.">
+
+    <meta name="keywords"
+        content="facial balancing Sicklerville NJ, facial balancing, facial filler, lip filler, cheek filler, POUT Aesthetics">
+
+    <link rel="canonical" href="https://poutspa.com/services/facial-balancing/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Facial Balancing in Sicklerville, NJ | POUT Aesthetics">
+    <meta property="og:description"
+        content="Learn about personalized facial balancing in Sicklerville, NJ. POUT Aesthetics creates thoughtful injectable treatment plans based on your features.">
+    <meta property="og:url" content="https://poutspa.com/services/facial-balancing/">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Water+Brush&family=DM+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --pout-pink: #A61377;
+            --pout-white: #FFFFFF;
+            --pout-black: #141415;
+            --pout-muted: #68646A;
+            --pout-light: #FAF5F9;
+            --pout-border: #EBDCE6;
+
+            --display: "Bodoni Moda", Georgia, serif;
+            --body: "Archivo", Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--pout-white);
+            color: var(--pout-black);
+            font-family: var(--body);
+            line-height: 1.7;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .balance-page {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .balance-container {
+            width: min(1160px, calc(100% - 48px));
+            margin: 0 auto;
+        }
+
+        .balance-eyebrow {
+            margin: 0 0 18px;
+            color: var(--pout-pink);
+            font-family: var(--body);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.19em;
+            line-height: 1.5;
+            text-transform: uppercase;
+        }
+
+        /* Hero */
+
+        .balance-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 610px;
+            background: var(--pout-light);
+        }
+
+        .balance-hero-copy {
+            align-self: center;
+            padding: 80px 55px 80px max(40px, calc((100vw - 1160px) / 2));
+        }
+
+        .balance-hero h1 {
+            max-width: 620px;
+            margin: 0 0 24px;
+            font-family: var(--display);
+            font-size: clamp(42px, 5vw, 68px);
+            font-weight: 400;
+            letter-spacing: -0.035em;
+            line-height: 1.08;
+        }
+
+        .balance-hero-description {
+            max-width: 540px;
+            margin: 0;
+            color: var(--pout-muted);
+            font-size: 16px;
+            line-height: 1.85;
+        }
+
+        .balance-hero-media {
+            min-height: 520px;
+            background: #EADDE6;
+        }
+
+        .balance-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .balance-button {
+            display: inline-flex;
+            min-height: 49px;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 23px;
+            border: 1px solid var(--pout-pink);
+            background: var(--pout-pink);
+            color: var(--pout-white);
+            font-family: var(--body);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.09em;
+            line-height: 1.4;
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition:
+                background 0.2s ease,
+                border-color 0.2s ease,
+                color 0.2s ease;
+        }
+
+        .balance-button:hover {
+            border-color: #850E5E;
+            background: #850E5E;
+            color: var(--pout-white);
+        }
+
+        .balance-button-outline {
+            border-color: var(--pout-border);
+            background: transparent;
+            color: var(--pout-black);
+        }
+
+        .balance-button-outline:hover {
+            border-color: var(--pout-pink);
+            background: var(--pout-pink);
+            color: var(--pout-white);
+        }
+
+        /* Introduction */
+
+        .balance-intro {
+            padding: 100px 0 95px;
+            text-align: center;
+        }
+
+        .balance-intro h2,
+        .balance-content h2,
+        .balance-expect h2,
+        .balance-faq-section h2,
+        .balance-related h2 {
+            margin: 0 0 22px;
+            font-family: var(--display);
+            font-size: clamp(34px, 4vw, 49px);
+            font-weight: 400;
+            letter-spacing: -0.025em;
+            line-height: 1.16;
+        }
+
+        .balance-intro-copy {
+            max-width: 810px;
+            margin: 0 auto;
+            color: var(--pout-muted);
+            font-size: 17px;
+            line-height: 1.9;
+        }
+
+        /* Facial balancing details */
+
+        .balance-content {
+            padding: 92px 0;
+            background: var(--pout-black);
+            color: var(--pout-white);
+        }
+
+        .balance-content-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            align-items: center;
+            gap: 70px;
+        }
+
+        .balance-content-media {
+            min-height: 540px;
+            background: #292329;
+        }
+
+        .balance-content-copy h2 {
+            margin-left: 0;
+        }
+
+        .balance-content .balance-eyebrow {
+            color: #E9A4D1;
+        }
+
+        .balance-content-description {
+            margin: 0;
+            color: #D0CBD0;
+            font-size: 15px;
+            line-height: 1.9;
+        }
+
+        .balance-points {
+            display: grid;
+            gap: 22px;
+            margin-top: 32px;
+        }
+
+        .balance-point {
+            padding-top: 20px;
+            border-top: 1px solid #494149;
+        }
+
+        .balance-point h3 {
+            margin: 0 0 7px;
+            font-family: var(--display);
+            font-size: 25px;
+            font-weight: 400;
+            line-height: 1.3;
+        }
+
+        .balance-point p {
+            margin: 0;
+            color: #C9C2C9;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* Consultation */
+
+        .balance-expect {
+            padding: 96px 0;
+        }
+
+        .balance-expect-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            align-items: start;
+            gap: 75px;
+        }
+
+        .balance-expect h2 {
+            margin-left: 0;
+        }
+
+        .balance-expect-copy p {
+            margin: 0 0 24px;
+            color: var(--pout-muted);
+            font-size: 15px;
+            line-height: 1.9;
+        }
+
+        /* Consultation CTA */
+
+        .balance-consult {
+            padding: 68px 24px;
+            background: var(--pout-light);
+            text-align: center;
+        }
+
+        .balance-consult h2 {
+            max-width: 800px;
+            margin: 0 auto 16px;
+            font-family: var(--display);
+            font-size: clamp(32px, 4vw, 46px);
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        .balance-consult-description {
+            max-width: 660px;
+            margin: 0 auto;
+            color: var(--pout-muted);
+            font-size: 15px;
+        }
+
+        .balance-consult .balance-buttons {
+            justify-content: center;
+        }
+
+        /* FAQs */
+
+        .balance-faq-section {
+            padding: 96px 0;
+        }
+
+        .balance-faq-layout {
+            display: grid;
+            grid-template-columns: 0.75fr 1.25fr;
+            gap: 75px;
+        }
+
+        .balance-faq-section h2 {
+            margin-left: 0;
+        }
+
+        .balance-faq-intro {
+            color: var(--pout-muted);
+            font-size: 14px;
+            line-height: 1.85;
+        }
+
+        .balance-faq {
+            padding: 22px 0;
+            border-bottom: 1px solid var(--pout-border);
+        }
+
+        .balance-faq:first-child {
+            border-top: 1px solid var(--pout-border);
+        }
+
+        .balance-faq summary {
+            position: relative;
+            padding-right: 35px;
+            cursor: pointer;
+            list-style: none;
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 1.7;
+        }
+
+        .balance-faq summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .balance-faq summary::after {
+            position: absolute;
+            top: -3px;
+            right: 0;
+            color: var(--pout-pink);
+            content: "+";
+            font-size: 25px;
+            font-weight: 400;
+        }
+
+        .balance-faq[open] summary::after {
+            content: "−";
+        }
+
+        .balance-faq p {
+            margin: 14px 0 0;
+            color: var(--pout-muted);
+            font-size: 14px;
+            line-height: 1.9;
+        }
+
+        /* Related services */
+
+        .balance-related {
+            padding: 76px 0;
+            background: var(--pout-light);
+        }
+
+        .balance-related h2 {
+            margin-bottom: 28px;
+            font-size: 39px;
+        }
+
+        .balance-related-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .balance-related-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            padding: 14px 18px;
+            border: 1px solid var(--pout-border);
+            background: var(--pout-white);
+            font-size: 13px;
+            text-decoration: none;
+            transition:
+                border-color 0.2s ease,
+                color 0.2s ease;
+        }
+
+        .balance-related-links a:hover {
+            border-color: var(--pout-pink);
+            color: var(--pout-pink);
+        }
+
+        .balance-related-links span {
+            color: var(--pout-pink);
+        }
+
+        /* Final CTA */
+
+        .balance-final-cta {
+            padding: 82px 24px;
+            background: var(--pout-pink);
+            color: var(--pout-white);
+            text-align: center;
+        }
+
+        .balance-final-cta h2 {
+            max-width: 800px;
+            margin: 0 auto 17px;
+            font-family: var(--display);
+            font-size: clamp(34px, 4vw, 50px);
+            font-weight: 400;
+            line-height: 1.15;
+        }
+
+        .balance-final-cta p {
+            max-width: 640px;
+            margin: 0 auto;
+            color: #F9EAF4;
+            font-size: 15px;
+        }
+
+        .balance-final-cta .balance-button {
+            margin-top: 28px;
+            border-color: var(--pout-white);
+            background: var(--pout-white);
+            color: var(--pout-pink);
+        }
+
+        .balance-final-cta .balance-button:hover {
+            border-color: var(--pout-black);
+            background: var(--pout-black);
+            color: var(--pout-white);
+        }
+
+        /* Tablet */
+
+        @media (max-width: 900px) {
+            .balance-hero {
+                grid-template-columns: 1fr;
+            }
+
+            .balance-hero-copy {
+                padding: 68px 36px;
+            }
+
+            .balance-hero-media {
+                min-height: 440px;
+            }
+
+            .balance-content-grid,
+            .balance-expect-grid,
+            .balance-faq-layout {
+                grid-template-columns: 1fr;
+                gap: 42px;
+            }
+
+            .balance-content-media {
+                min-height: 430px;
+            }
+
+            .balance-faq-layout {
+                gap: 25px;
+            }
+        }
+
+        /* Mobile */
+
+        @media (max-width: 600px) {
+            .balance-container {
+                width: calc(100% - 36px);
+            }
+
+            .balance-hero-copy {
+                padding: 54px 22px;
+            }
+
+            .balance-hero h1 {
+                font-size: 43px;
+            }
+
+            .balance-hero-media {
+                min-height: 340px;
+            }
+
+            .balance-intro,
+            .balance-content,
+            .balance-expect,
+            .balance-faq-section {
+                padding: 66px 0;
+            }
+
+            .balance-intro-copy {
+                font-size: 15px;
+            }
+
+            .balance-content-media {
+                min-height: 320px;
+            }
+
+            .balance-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .balance-button {
+                width: 100%;
+            }
+
+            .balance-related-links {
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+
+            .balance-related-links a {
+                width: 100%;
+            }
+
+            .balance-consult,
+            .balance-final-cta {
+                padding: 62px 22px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="balance-page">
+
+        <!-- HERO -->
+        <section class="balance-hero">
+            <div class="balance-hero-copy">
+                <p class="balance-eyebrow">PERSONALIZED AESTHETICS</p>
+
+                <h1>Facial Balancing in Sicklerville, NJ</h1>
+
+                <p class="balance-hero-description">
+                    Discover a thoughtful approach to facial proportions.
+                    At POUT Aesthetics, we consider your features, preferences,
+                    and goals to help you explore appropriate treatment options.
+                </p>
+
+                <div class="balance-buttons">
+                    <a class="balance-button" href="https://www.joinblvd.com/b/poutspa/widget#/visit-type">
+                        Book a Facial Balancing Consultation
+                    </a>
+
+                    <a class="balance-button balance-button-outline" href="/contact/">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+
+            <div class="balance-hero-media">
+                <!-- Replace with the final facial balancing hero image URL. -->
+                <img src="/Images/facial-balancing.jpg" alt="Facial aesthetics consultation at POUT Aesthetics"
+                    fetchpriority="high">
+            </div>
+        </section>
+
+        <!-- INTRODUCTION -->
+        <section class="balance-intro">
+            <div class="balance-container">
+                <p class="balance-eyebrow">THE POUT APPROACH</p>
+
+                <h2>Balance That Starts with Your Features</h2>
+
+                <p class="balance-intro-copy">
+                    Facial balancing takes a step back from any one feature and
+                    looks at how your face works as a whole. At POUT Aesthetics
+                    in Sicklerville, NJ, we use an individualized consultation
+                    to understand your proportions, preferences, and what changes—if
+                    any—may help create the balance you want.
+                </p>
+            </div>
+        </section>
+
+        <!-- WHAT IS FACIAL BALANCING -->
+        <section class="balance-content">
+            <div class="balance-container balance-content-grid">
+
+                <div class="balance-content-media">
+                    <!-- Replace with the final treatment image URL. -->
+                    <img src="/Images/facial-balancing-consultation.jpg"
+                        alt="Personalized facial balancing consultation" loading="lazy">
+                </div>
+
+                <div class="balance-content-copy">
+                    <p class="balance-eyebrow">A WHOLE-FACE APPROACH</p>
+
+                    <h2>What Is Facial Balancing?</h2>
+
+                    <p class="balance-content-description">
+                        Rather than treating a single area in isolation, facial
+                        balancing considers the relationship between features such
+                        as the cheeks, chin, jawline, and lips. Injectable fillers
+                        may be one option, but not every patient needs treatment
+                        in multiple areas. The most appropriate plan starts with
+                        your goals and anatomy.
+                    </p>
+
+                    <div class="balance-points">
+
+                        <article class="balance-point">
+                            <h3>Look at the Whole Picture</h3>
+                            <p>
+                                Consider how the cheeks, chin, jawline, and lips relate
+                                to one another instead of focusing on just one feature.
+                            </p>
+                        </article>
+
+                        <article class="balance-point">
+                            <h3>Keep Your Goals Personal</h3>
+                            <p>
+                                Your preferences and facial anatomy guide the discussion
+                                about what you would like to refine.
+                            </p>
+                        </article>
+
+                        <article class="balance-point">
+                            <h3>Choose Only Appropriate Treatments</h3>
+                            <p>
+                                Fillers may be considered when suitable, but treatment
+                                in multiple areas is not a requirement.
+                            </p>
+                        </article>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONSULTATION PROCESS -->
+        <section class="balance-expect">
+            <div class="balance-container balance-expect-grid">
+
+                <div>
+                    <p class="balance-eyebrow">YOUR CONSULTATION</p>
+
+                    <h2>Your Consultation Comes First</h2>
+                </div>
+
+                <div class="balance-expect-copy">
+                    <p>
+                        Your injector will examine facial proportions, talk through
+                        realistic outcomes, and discuss product selection, injection
+                        sites, pricing, and recovery if treatment is recommended.
+                    </p>
+
+                    <p>
+                        Some plans can be completed in a visit; others are better
+                        approached gradually. Your provider will also explain
+                        potential risks, limitations, and alternatives before
+                        you decide whether to proceed.
+                    </p>
+
+                    <a class="balance-button balance-button-outline"
+                        href="https://www.joinblvd.com/b/poutspa/widget#/visit-type">
+                        Discuss Your Goals
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONSULTATION CTA -->
+        <section class="balance-consult">
+            <div class="balance-container">
+                <p class="balance-eyebrow">YOUR NEXT STEP</p>
+
+                <h2>Discover Your Facial Balancing Options</h2>
+
+                <p class="balance-consult-description">
+                    Start with a personalized consultation to discuss your
+                    proportions, preferences, and whether any treatment may
+                    be appropriate for your goals.
+                </p>
+
+                <div class="balance-buttons">
+                    <a class="balance-button" href="https://www.joinblvd.com/b/poutspa/widget#/visit-type">
+                        Book a Facial Balancing Consultation
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="balance-faq-section">
+            <div class="balance-container balance-faq-layout">
+
+                <div>
+                    <p class="balance-eyebrow">GOOD TO KNOW</p>
+
+                    <h2>Frequently Asked Questions</h2>
+
+                    <p class="balance-faq-intro">
+                        Learn more about facial balancing and what to discuss
+                        with your injector before choosing a treatment.
+                    </p>
+                </div>
+
+                <div>
+
+                    <details class="balance-faq">
+                        <summary>
+                            Does facial balancing mean getting filler everywhere?
+                        </summary>
+
+                        <p>
+                            No. It refers to an overall planning approach, not a
+                            required number of syringes or treatment areas. Your
+                            provider will discuss which options, if any, are
+                            appropriate for your anatomy and goals.
+                        </p>
+                    </details>
+
+                    <details class="balance-faq">
+                        <summary>Can facial balancing look natural?</summary>
+
+                        <p>
+                            Our focus is on your individual proportions and
+                            preferences. Your injector will discuss realistic
+                            results and whether a subtle approach is achievable
+                            for you.
+                        </p>
+                    </details>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- RELATED SERVICES -->
+        <section class="balance-related">
+            <div class="balance-container">
+                <p class="balance-eyebrow">EXPLORE MORE</p>
+
+                <h2>Related Services</h2>
+
+                <nav class="balance-related-links" aria-label="Related aesthetic services">
+                    <a href="/services/dermal-fillers/">
+                        Dermal Fillers
+                        <span aria-hidden="true">↗</span>
+                    </a>
+
+                    <a href="/services/lip-filler/">
+                        Lip Filler
+                        <span aria-hidden="true">↗</span>
+                    </a>
+
+                    <a href="/services/radiesse/">
+                        Radiesse
+                        <span aria-hidden="true">↗</span>
+                    </a>
+                </nav>
+            </div>
+        </section>
+
+        <!-- FINAL CTA -->
+        <section class="balance-final-cta">
+            <div class="balance-container">
+                <h2>Your Features. Your Balance. Your Plan.</h2>
+
+                <p>
+                    Book a facial balancing consultation at POUT Aesthetics
+                    in Sicklerville, NJ, and explore an approach tailored
+                    to your features and preferences.
+                </p>
+
+                <a class="balance-button" href="https://www.joinblvd.com/b/poutspa/widget#/visit-type">
+                    Book a Facial Balancing Consultation
+                </a>
+            </div>
+        </section>
+
+    </main>
+</body>
+
+</html>
