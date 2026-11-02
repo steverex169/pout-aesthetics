@@ -1512,10 +1512,69 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
+      "@type": "MedicalBusiness",
       "@id": "https://poutspa.com/#organization",
       "name": "POUT Aesthetics",
-      "url": "https://poutspa.com/"
+      "url": "https://poutspa.com/",
+      "telephone": "+1-856-513-6584",
+      "image": "https://poutspa.com/Images/logo.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "611 Berlin–Cross Keys Rd, B-218",
+        "addressLocality": "Sicklerville",
+        "addressRegion": "NJ",
+        "postalCode": "08081",
+        "addressCountry": "US"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Monday",
+          "opens": "10:00",
+          "closes": "16:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Tuesday",
+          "opens": "10:00",
+          "closes": "16:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Wednesday",
+          "opens": "10:00",
+          "closes": "17:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Thursday",
+          "opens": "10:00",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Friday",
+          "opens": "10:00",
+          "closes": "17:00"
+        }
+      ],
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Sicklerville"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "South Jersey"
+        },
+        {
+          "@type": "City",
+          "name": "Philadelphia"
+        }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/pout_aesthetics_"
+      ]
     },
     {
       "@type": "Person",
