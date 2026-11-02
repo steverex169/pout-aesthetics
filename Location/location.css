@@ -544,3 +544,124 @@ img { max-width: 100%; display: block; }
     .loc-expect-points { grid-template-columns: 1fr; }
     .loc-hero-stats { grid-template-columns: 1fr 1fr; }
 }
+
+
+/* ============================================
+   REGIONAL PAGE HERO + POLISH OVERRIDES
+   The regional HTML uses the legacy .wrap hero
+   structure, so style that structure directly.
+   ============================================ */
+
+.loc-page .loc-hero,
+.loc-hero {
+    display: block;
+    min-height: 0;
+    padding: clamp(88px, 10vw, 142px) 0;
+    background: var(--pout-light);
+    text-align: center;
+}
+
+.loc-hero > .wrap {
+    width: min(100% - 48px, 920px);
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.loc-hero .eyebrow,
+.loc-hero .loc-eyebrow {
+    display: block;
+    margin: 0 auto 22px;
+    text-align: center;
+}
+
+.loc-hero h1 {
+    max-width: 860px;
+    margin: 0 auto 24px;
+    font-size: clamp(38px, 5.2vw, 66px);
+    line-height: 1.08;
+    letter-spacing: -1.4px;
+    text-align: center;
+    text-wrap: balance;
+}
+
+.loc-hero .lead,
+.loc-hero p {
+    max-width: 720px;
+    margin: 0 auto 32px;
+    color: var(--pout-muted);
+    font-size: clamp(15px, 1.25vw, 17px);
+    line-height: 1.85;
+    text-align: center;
+}
+
+.loc-hero .loc-cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    margin: 0 auto;
+}
+
+.loc-hero .loc-cta-group .btn {
+    display: inline-flex;
+    min-height: 50px;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 24px;
+    text-align: center;
+}
+
+.loc-hero .loc-cta-group .btn-ghost {
+    border: 1px solid var(--pout-black);
+    color: var(--pout-black);
+    background: transparent;
+}
+
+.loc-hero .loc-cta-group .btn-ghost:hover {
+    border-color: var(--pout-pink);
+    color: var(--pout-white);
+    background: var(--pout-pink);
+}
+
+/* Remove repetitive star decorations from regional feature rows
+   and repeated testimonial rating rows. */
+.loc-travel-icon,
+.loc-quote-stars {
+    display: none !important;
+}
+
+.loc-travel-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+}
+
+.loc-travel-text {
+    min-width: 0;
+}
+
+@media (max-width: 680px) {
+    .loc-hero {
+        padding: 76px 0 82px;
+    }
+
+    .loc-hero > .wrap {
+        width: min(100% - 36px, 540px);
+    }
+
+    .loc-hero h1 {
+        font-size: clamp(36px, 10vw, 48px);
+        letter-spacing: -0.8px;
+    }
+
+    .loc-hero .loc-cta-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .loc-hero .loc-cta-group .btn {
+        width: 100%;
+    }
+}
