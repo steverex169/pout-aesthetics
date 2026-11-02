@@ -665,3 +665,27 @@ img { max-width: 100%; display: block; }
         width: 100%;
     }
 }
+
+
+/* Regional footer: keep Areas We Serve links readable on the dark footer. */
+.foot .loc-footer-col a,
+.foot .loc-footer-col a:link,
+.foot .loc-footer-col a:visited {
+    display: block;
+    margin: 0 0 9px;
+    color: rgba(255, 255, 255, .82);
+    font-size: 13.5px;
+    line-height: 1.75;
+    text-decoration: none;
+    transition: color .2s ease;
+}
+
+.foot .loc-footer-col a:hover,
+.foot .loc-footer-col a:focus-visible {
+    color: #E7A9D0;
+}
+
+.foot .loc-footer-col a:focus-visible {
+    outline: 2px solid #E7A9D0;
+    outline-offset: 3px;
+}
