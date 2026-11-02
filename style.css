@@ -2199,8 +2199,8 @@ h2.section-title {
 
 .foot-grid {
     display: grid;
-    grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
-    gap: 34px
+    grid-template-columns: 1.25fr repeat(5, minmax(0, 1fr));
+    gap: 24px
 }
 
 @media(max-width:820px) {
