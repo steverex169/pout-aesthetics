@@ -136,4 +136,23 @@ if (termsAccepted && termsStatus) {
     termsAccepted.addEventListener('change', () => updateTermsState(termsAccepted.checked));
 }
 
+
+/* Highlight today's opening-hours row using the clinic's New Jersey timezone. */
+function updateFooterToday() {
+    const dayKey = new Intl.DateTimeFormat('en-US', {
+        weekday: 'short',
+        timeZone: 'America/New_York'
+    }).format(new Date()).toLowerCase();
+    document.querySelectorAll('.foot-hour[data-days]').forEach(row => {
+        const isToday = row.dataset.days.split(',').includes(dayKey);
+        row.classList.toggle('is-today', isToday);
+        const badge = row.querySelector('.foot-today');
+        if (badge) badge.hidden = !isToday;
+        row.toggleAttribute('aria-current', isToday);
+        if (isToday) row.setAttribute('aria-current', 'date');
+        else row.removeAttribute('aria-current');
+    });
+}
+updateFooterToday();
+
 route();
