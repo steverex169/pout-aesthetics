@@ -2205,46 +2205,49 @@ h2.section-title {
 
 .foot-areas-wrap {
     width: 100%;
-    margin-top: 34px;
-    padding-top: 26px;
+    margin-top: 30px;
+    padding-top: 22px;
     border-top: 1px solid var(--hair)
 }
 
 .foot-areas-wrap > h4 {
-    margin-bottom: 18px
+    margin-bottom: 20px
 }
 
 .foot-areas-wrap > .foot-areas {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     justify-content: start;
-    align-items: stretch;
-    gap: 18px;
+    align-items: start;
+    gap: 36px;
     width: 100%;
     min-width: 0
 }
 
 .foot-areas-wrap .foot-region {
     min-width: 0;
-    padding: 18px 20px;
-    border: 1px solid rgba(255,255,255,.10);
-    border-radius: 12px;
-    background: linear-gradient(145deg, rgba(255,255,255,.045), rgba(255,255,255,.012))
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent
 }
 
 .foot-areas-wrap .foot-region h5 {
-    display: block;
+    display: inline-block;
     margin: 0 0 15px;
-    color: var(--neon);
-    font-size: 10px;
-    letter-spacing: .2em;
+    padding-bottom: 7px;
+    border-bottom: 2px solid var(--neon);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
     text-transform: uppercase
 }
 
 .foot-areas-wrap .foot-state {
     display: block !important;
     min-width: 0;
-    margin: 0 0 12px
+    margin: 0 0 11px
 }
 
 .foot-areas-wrap .foot-state:last-child {
@@ -2253,15 +2256,21 @@ h2.section-title {
 
 .foot-areas-wrap .foot-state a.line {
     display: inline-block;
+    color: #fff;
     font-size: 13px;
     line-height: 1.4;
     font-weight: 600;
     transition: color .2s ease
 }
 
+.foot-areas-wrap .foot-state a.line:hover,
+.foot-areas-wrap .foot-state a.line:focus-visible {
+    color: var(--neon)
+}
+
 .foot-areas-wrap .foot-state span {
     display: block;
-    color: rgba(255,255,255,.48);
+    color: rgba(255,255,255,.55);
     font-size: 11px;
     line-height: 1.45;
     margin-top: 2px
@@ -2270,17 +2279,14 @@ h2.section-title {
 @media(max-width:700px) {
     .foot-areas-wrap > .foot-areas {
         grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-        gap: 12px
-    }
-
-    .foot-areas-wrap .foot-region {
-        padding: 15px 13px
+        gap: 22px
     }
 }
 
 @media(max-width:420px) {
     .foot-areas-wrap > .foot-areas {
-        grid-template-columns: 1fr !important
+        grid-template-columns: 1fr !important;
+        gap: 22px
     }
 }
 .foot h4 {
