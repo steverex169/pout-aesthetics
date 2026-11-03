@@ -2219,7 +2219,8 @@ h2.section-title {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     justify-content: start;
     align-items: start;
-    gap: 36px;
+    column-gap: 16px;
+    row-gap: 0;
     width: 100%;
     min-width: 0
 }
@@ -2235,9 +2236,9 @@ h2.section-title {
 .foot-areas-wrap .foot-region h5 {
     display: inline-block;
     margin: 0 0 15px;
-    padding-bottom: 7px;
-    border-bottom: 2px solid var(--neon);
-    color: #fff;
+    padding-bottom: 0;
+    border-bottom: 0;
+    color: #c9c3d2;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: .12em;
@@ -2279,14 +2280,15 @@ h2.section-title {
 @media(max-width:700px) {
     .foot-areas-wrap > .foot-areas {
         grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-        gap: 22px
+        column-gap: 14px;
+        row-gap: 0
     }
 }
 
 @media(max-width:420px) {
     .foot-areas-wrap > .foot-areas {
         grid-template-columns: 1fr !important;
-        gap: 22px
+        row-gap: 18px
     }
 }
 .foot h4 {
