@@ -2204,65 +2204,77 @@ h2.section-title {
 }
 
 .foot-areas-wrap {
-    display: block;
     width: 100%;
-    margin-top: 30px;
-    padding-top: 24px;
+    margin-top: 34px;
+    padding-top: 26px;
     border-top: 1px solid var(--hair)
+}
+
+.foot-areas-wrap > h4 {
+    margin-bottom: 18px
 }
 
 .foot-areas-wrap > .foot-areas {
     display: grid !important;
-    grid-template-columns: max-content max-content !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     justify-content: start;
-    align-items: start;
-    column-gap: 48px;
-    row-gap: 0;
-    width: max-content;
-    max-width: 100%;
+    align-items: stretch;
+    gap: 18px;
+    width: 100%;
     min-width: 0
 }
 
 .foot-areas-wrap .foot-region {
-    display: block !important;
-    min-width: 0
+    min-width: 0;
+    padding: 18px 20px;
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 12px;
+    background: linear-gradient(145deg, rgba(255,255,255,.045), rgba(255,255,255,.012))
 }
 
 .foot-areas-wrap .foot-region h5 {
     display: block;
-    margin: 0 0 14px;
-    color: rgba(255,255,255,.55);
+    margin: 0 0 15px;
+    color: var(--neon);
     font-size: 10px;
-    letter-spacing: .16em;
+    letter-spacing: .2em;
     text-transform: uppercase
 }
 
 .foot-areas-wrap .foot-state {
     display: block !important;
     min-width: 0;
-    margin: 0 0 10px
+    margin: 0 0 12px
+}
+
+.foot-areas-wrap .foot-state:last-child {
+    margin-bottom: 0
 }
 
 .foot-areas-wrap .foot-state a.line {
-    display: block;
+    display: inline-block;
     font-size: 13px;
     line-height: 1.4;
-    font-weight: 600
+    font-weight: 600;
+    transition: color .2s ease
 }
 
 .foot-areas-wrap .foot-state span {
     display: block;
     color: rgba(255,255,255,.48);
     font-size: 11px;
-    line-height: 1.4;
+    line-height: 1.45;
     margin-top: 2px
 }
 
 @media(max-width:700px) {
     .foot-areas-wrap > .foot-areas {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
-        column-gap: 20px;
-        width: 100%
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 12px
+    }
+
+    .foot-areas-wrap .foot-region {
+        padding: 15px 13px
     }
 }
 
