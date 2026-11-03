@@ -2323,13 +2323,15 @@ h2.section-title {
     grid-template-columns: max-content max-content !important;
     justify-content: start;
     align-items: start;
-    column-gap: clamp(70px, 18vw, 260px);
+    column-gap: clamp(32px, 6vw, 84px);
     row-gap: 0;
     width: max-content;
     max-width: 100%;
     min-width: 0;
 }
 .foot-areas-wrap .foot-region {
+    align-self: start;
+    margin-top: 0;
     min-width: 0;
     padding: 0;
     border: 0;
@@ -2388,7 +2390,7 @@ h2.section-title {
 @media (max-width: 1050px) {
     .foot-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 42px; }
     .foot-brand { grid-column: span 1; }
-    .foot-areas-wrap > .foot-areas { column-gap: 70px; }
+    .foot-areas-wrap > .foot-areas { column-gap: 48px; }
 }
 @media (max-width: 700px) {
     .foot { padding: 46px 0 30px; }
