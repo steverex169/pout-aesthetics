@@ -2199,8 +2199,52 @@ h2.section-title {
 
 .foot-grid {
     display: grid;
-    grid-template-columns: 1.25fr repeat(5, minmax(0, 1fr));
-    gap: 24px
+    grid-template-columns: 1.1fr .8fr 1.9fr 1fr 1fr .9fr;
+    gap: 20px
+}
+
+.foot-areas {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    min-width: 0
+}
+
+.foot-region h5 {
+    color: rgba(255,255,255,.55);
+    font-size: 9px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    margin: 0 0 8px
+}
+
+.foot-state {
+    margin: 0 0 7px
+}
+
+.foot-state a.line {
+    font-size: 12px;
+    line-height: 1.35;
+    font-weight: 600
+}
+
+.foot-state span {
+    display: block;
+    color: rgba(255,255,255,.48);
+    font-size: 10px;
+    line-height: 1.35;
+    margin-top: 1px
+}
+
+@media(max-width:1100px) {
+    .foot-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px
+    }
+
+    .foot-areas {
+        grid-column: span 2
+    }
 }
 
 @media(max-width:820px) {
@@ -2208,11 +2252,21 @@ h2.section-title {
         grid-template-columns: 1fr 1fr;
         gap: 28px
     }
+
+    .foot-areas {
+        grid-column: span 2
+    }
 }
 
 @media(max-width:520px) {
     .foot-grid {
         grid-template-columns: 1fr
+    }
+
+    .foot-areas {
+        grid-column: auto;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px
     }
 }
 
