@@ -2320,7 +2320,7 @@ h2.section-title {
 .foot-areas-wrap > h4 { margin-bottom: 34px; }
 .foot-areas-wrap > .foot-areas {
     display: grid !important;
-    grid-template-columns: repeat(3, max-content) !important;
+    grid-template-columns: repeat(2, max-content) !important;
     justify-content: start;
     align-items: start;
     column-gap: clamp(24px, 3vw, 48px);
