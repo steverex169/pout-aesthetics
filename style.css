@@ -2474,3 +2474,26 @@ img.image-load-failed{object-fit:contain;background:linear-gradient(135deg,#1714
 .foot .foot-hour strong { color: #fff !important; }
 .foot .foot-hour > span:not(.foot-today) { color: rgba(255, 255, 255, .82) !important; }
 .foot .foot-column h4 { color: var(--neon) !important; }
+
+
+/* Regional-page footer links: preserve the dark-footer palette on every state page. */
+.foot .foot-grid a,
+.foot .foot-grid a:link,
+.foot .foot-grid a:visited,
+.foot .foot-grid a.line,
+.foot .foot-grid a.line:link,
+.foot .foot-grid a.line:visited {
+    color: rgba(255, 255, 255, .9) !important;
+    text-decoration: none;
+}
+
+.foot .foot-grid a:hover,
+.foot .foot-grid a:focus-visible,
+.foot .foot-grid a.line:hover,
+.foot .foot-grid a.line:focus-visible {
+    color: var(--neon) !important;
+}
+
+.foot .foot-grid h4 {
+    color: var(--neon) !important;
+}
