@@ -6,7 +6,7 @@
   position: relative;
   overflow: hidden;
   padding: clamp(64px, 9vw, 112px) 20px;
-  background: #FAF5F9;
+  background: #F2EAF0;
 }
 .error-content {
   width: min(100%, 760px);
@@ -17,10 +17,10 @@
 .error-content .eyebrow { margin: 0 0 8px; color: #A61377; }
 .error-code {
   margin: 0;
-  color: rgba(166, 19, 119, .075);
+  color: rgba(166, 19, 119, .14);
   font-family: var(--display);
   font-size: clamp(112px, 23vw, 220px);
-  font-weight: 500;
+  font-weight: 300;
   line-height: .9;
   letter-spacing: -.07em;
 }
