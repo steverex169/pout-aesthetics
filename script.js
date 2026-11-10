@@ -12,7 +12,8 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(fals
 const views = [...document.querySelectorAll('[data-view]')];
 function route() {
     const hash = (location.hash.replace('#', '') || '/');
-    const target = views.find(v => v.dataset.view === hash) || views[0];
+    const target = views.find(v => v.dataset.view === hash);
+    if (!target) { window.location.replace('/404.html'); return; }
     views.forEach(v => v.classList.toggle('active', v === target));
     document.querySelectorAll('#menuLinks a, #desktopNav a').forEach(a => a.classList.toggle('current', a.getAttribute('href') === '#' + hash));
     setMenu(false);
@@ -32,10 +33,23 @@ function reveal(scope) {
 // Boulevard booking: open the overlay when it has loaded, otherwise fall back to the widget link
 document.addEventListener('click', e => {
     const link = e.target.closest('a[data-blvd]');
-    if (!link || !window.blvd || typeof blvd.openBookingWidget !== 'function') return;
+    if (!link || !window.blvd || typeof window.blvd.openBookingWidget !== 'function') return;
     e.preventDefault();
     setMenu(false);
-    blvd.openBookingWidget({ urlParams: {} });
+    try { window.blvd.openBookingWidget({ urlParams: {} }); }
+    catch (error) { window.open(link.href, '_blank', 'noopener,noreferrer'); }
+});
+
+// Replace failed image requests with a neutral, branded placeholder.
+document.querySelectorAll('img').forEach(img => {
+    img.addEventListener('error', () => {
+        if (img.dataset.fallbackApplied) return;
+        img.dataset.fallbackApplied = 'true';
+        img.classList.add('image-load-failed');
+        const label = (img.alt || 'Image unavailable').replace(/[<>]/g, '');
+        const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400"><rect width="640" height="400" fill="#211b22"/><path d="M270 155h100v90H270zM290 135h60v20h-60z" fill="none" stroke="#a61377" stroke-width="4"/><text x="320" y="285" fill="#e9dce6" font-family="Arial,sans-serif" font-size="20" text-anchor="middle">' + label.slice(0,48) + '</text></svg>';
+        img.src = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+    }, { once: true });
 });
 
 const hero = document.querySelector('.hero');
