@@ -1,0 +1,84 @@
+/* POUT Aesthetics — compact branded 404 page */
+.error-main {
+  min-height: 520px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: clamp(64px, 9vw, 112px) 20px;
+  background:
+    radial-gradient(ellipse at 50% 42%, rgba(166, 19, 119, .16), transparent 54%),
+    var(--ink);
+}
+.error-content {
+  width: min(100%, 760px);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.error-content .eyebrow { margin: 0 0 8px; }
+.error-code {
+  margin: 0;
+  color: rgba(255,255,255,.055);
+  font-family: var(--display);
+  font-size: clamp(112px, 23vw, 220px);
+  font-weight: 500;
+  line-height: .9;
+  letter-spacing: -.07em;
+}
+.error-rule {
+  width: 62px;
+  height: 1px;
+  margin: 24px auto 26px;
+  background: var(--neon);
+  box-shadow: 0 0 18px rgba(255,53,188,.5);
+}
+.error-content h1 {
+  margin: 0 auto 18px;
+  color: var(--paper);
+  font-family: var(--display);
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -.025em;
+}
+.error-message {
+  max-width: 560px;
+  margin: 0 auto;
+  color: rgba(255,255,255,.72);
+  font-size: 15px;
+  line-height: 1.8;
+}
+.error-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 32px;
+}
+.error-actions .btn { min-width: 190px; }
+.error-contact {
+  margin: 28px 0 0;
+  color: rgba(255,255,255,.58);
+  font-size: 13px;
+}
+.error-contact a {
+  color: var(--neon);
+  transition: color .2s ease;
+}
+.error-contact a:hover,
+.error-contact a:focus-visible { color: #fff; }
+@media (max-width: 600px) {
+  .error-main {
+    min-height: 460px;
+    padding: 62px 20px 70px;
+  }
+  .error-rule { margin: 18px auto 22px; }
+  .error-message { font-size: 14px; }
+  .error-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .error-actions .btn { width: min(100%, 280px); }
+}
