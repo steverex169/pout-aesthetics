@@ -17,16 +17,16 @@
 .error-content .eyebrow { margin: 0 0 8px; color: #A61377; }
 .error-code {
   margin: 0;
-  color: rgba(166, 19, 119, .14);
+  color: rgba(166, 19, 119, .28);
   font-family: var(--display);
   font-size: clamp(112px, 23vw, 220px);
-  font-weight: 300;
+  font-weight: 400;
   line-height: .9;
   letter-spacing: -.07em;
 }
 .error-rule {
   width: 62px;
-  height: 1px;
+  height: 2px;
   margin: 24px auto 26px;
   background: #A61377;
 }
