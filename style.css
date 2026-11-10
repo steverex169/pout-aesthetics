@@ -2455,3 +2455,22 @@ h2.section-title {
 img.image-load-failed{object-fit:contain;background:linear-gradient(135deg,#171419,#29202a);border:1px solid rgba(255,53,188,.22)}
 .site-noscript{padding:14px 20px;background:#21101d;color:#fff;text-align:center;font-size:13px;line-height:1.6;border-bottom:1px solid rgba(255,53,188,.35)}
 .site-noscript a{color:var(--neon);text-decoration:underline}
+
+
+/* Keep all footer navigation and contact links readable on the dark footer,
+   including visited links and pages with their own error-page styles. */
+.foot .foot-column > a.line,
+.foot .foot-column > a.line:visited,
+.foot .foot-column > a.foot-contact,
+.foot .foot-column > a.foot-contact:visited {
+    color: rgba(255, 255, 255, .9) !important;
+}
+.foot .foot-column > a.line:hover,
+.foot .foot-column > a.line:focus-visible,
+.foot .foot-column > a.foot-contact:hover,
+.foot .foot-column > a.foot-contact:focus-visible {
+    color: var(--neon) !important;
+}
+.foot .foot-hour strong { color: #fff !important; }
+.foot .foot-hour > span:not(.foot-today) { color: rgba(255, 255, 255, .82) !important; }
+.foot .foot-column h4 { color: var(--neon) !important; }
