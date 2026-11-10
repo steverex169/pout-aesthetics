@@ -2449,3 +2449,9 @@ h2.section-title {
         scroll-behavior: auto
     }
 }
+
+
+/* Graceful fallback for images that fail to load. */
+img.image-load-failed{object-fit:contain;background:linear-gradient(135deg,#171419,#29202a);border:1px solid rgba(255,53,188,.22)}
+.site-noscript{padding:14px 20px;background:#21101d;color:#fff;text-align:center;font-size:13px;line-height:1.6;border-bottom:1px solid rgba(255,53,188,.35)}
+.site-noscript a{color:var(--neon);text-decoration:underline}
