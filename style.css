@@ -2497,3 +2497,13 @@ img.image-load-failed{object-fit:contain;background:linear-gradient(135deg,#1714
 .foot .foot-grid h4 {
     color: var(--neon) !important;
 }
+
+
+/* Keep Explore and Legal footer links stacked vertically on regional pages. */
+.foot .foot-grid > div:nth-child(2) > a.line,
+.foot .foot-grid > div:nth-child(5) > a.line {
+    display: block !important;
+    width: fit-content;
+    margin: 0 0 18px;
+    line-height: 1.55;
+}
