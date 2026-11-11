@@ -13,7 +13,7 @@ const views = [...document.querySelectorAll('[data-view]')];
 function route() {
     const hash = (location.hash.replace('#', '') || '/');
     const target = views.find(v => v.dataset.view === hash);
-    if (!target) { window.location.replace('/404.html'); return; }
+    if (!target) { window.location.replace('/Error/404.html'); return; }
     views.forEach(v => v.classList.toggle('active', v === target));
     document.querySelectorAll('#menuLinks a, #desktopNav a').forEach(a => a.classList.toggle('current', a.getAttribute('href') === '#' + hash));
     setMenu(false);
