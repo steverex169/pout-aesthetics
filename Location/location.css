@@ -689,3 +689,32 @@ img { max-width: 100%; display: block; }
     outline: 2px solid #E7A9D0;
     outline-offset: 3px;
 }
+
+/* Keep Visit and Hours content white on all Northeast and Southeast regional pages.
+   location.css changes the page's base text color, so explicitly restore the footer palette. */
+.foot .foot-grid > div > h4 {
+    color: var(--neon) !important;
+}
+
+.foot .foot-grid > div:nth-child(3) > p,
+.foot .foot-grid > div:nth-child(3) > a.line,
+.foot .foot-grid > div:nth-child(3) > a.line:link,
+.foot .foot-grid > div:nth-child(3) > a.line:visited,
+.foot .foot-grid > div:nth-child(3) > a.line span {
+    color: rgba(255, 255, 255, .9) !important;
+}
+
+.foot .foot-grid > div:nth-child(3) > a.line:hover,
+.foot .foot-grid > div:nth-child(3) > a.line:focus-visible {
+    color: var(--neon) !important;
+}
+
+.foot .foot-grid > div:nth-child(4) > p {
+    color: rgba(255, 255, 255, .82) !important;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.foot .foot-grid > div:nth-child(4) > p strong {
+    color: #fff !important;
+}
