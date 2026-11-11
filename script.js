@@ -20,7 +20,92 @@ function route() {
     window.scrollTo({ top: 0, behavior: 'instant' });
     reveal(target);
 }
+
 addEventListener('hashchange', route);
+
+// Check same-site navigation before leaving the current page. External links,
+// telephone/email links, downloads, and links opening a new tab are left alone.
+const checkedLinks = new Map();
+function showSiteNotice(message) {
+    let notice = document.getElementById('siteRuntimeNotice');
+    if (!notice) {
+        notice = document.createElement('div');
+        notice.id = 'siteRuntimeNotice';
+        notice.className = 'site-runtime-notice';
+        notice.setAttribute('role', 'alert');
+        notice.setAttribute('aria-live', 'polite');
+        document.body.prepend(notice);
+    }
+    notice.textContent = message + ' If you need help, call ';
+    const phone = document.createElement('a');
+    phone.href = 'tel:+18565136584';
+    phone.textContent = '(856) 513-6584';
+    notice.appendChild(phone);
+}
+
+document.addEventListener('click', async event => {
+    const link = event.target.closest('a[href]');
+    if (!link || event.defaultPrevented || event.button !== 0 ||
+        event.metaKey || event.ctrlKey || event.shiftKey || event.altKey ||
+        link.target === '_blank' || link.hasAttribute('download')) return;
+
+    const rawHref = link.getAttribute('href');
+    if (!rawHref || rawHref.startsWith('#') || /^(mailto:|tel:|javascript:)/i.test(rawHref)) return;
+
+    let destination;
+    try { destination = new URL(link.href, window.location.href); }
+    catch (_) { return; }
+    if (destination.origin !== window.location.origin) return;
+
+    // Validate SPA routes locally without making a network request.
+    if (destination.pathname === '/' && destination.hash.startsWith('#/')) {
+        const requestedView = destination.hash.slice(1);
+        if (!views.some(view => view.dataset.view === requestedView)) {
+            event.preventDefault();
+            window.location.assign('/Error/404.html');
+        }
+        return;
+    }
+
+    // Only inspect same-origin page links. A network failure is not treated as
+    // a broken link; normal browser navigation is allowed in that case.
+    const key = destination.href;
+    event.preventDefault();
+    try {
+        let result = checkedLinks.get(key);
+        if (!result) {
+            result = fetch(destination.href, { method: 'HEAD', cache: 'no-store' })
+                .then(response => ({ ok: response.ok, status: response.status }))
+                .catch(() => null);
+            checkedLinks.set(key, result);
+        }
+        const response = await result;
+        if (response && response.status === 404) {
+            showSiteNotice('That page is currently unavailable.');
+            checkedLinks.delete(key);
+            return;
+        }
+        window.location.assign(destination.href);
+    } catch (_) {
+        window.location.assign(destination.href);
+    }
+});
+
+// Report JavaScript runtime errors and failed page resources without exposing
+// technical details to visitors. Individual image failures use their own fallback.
+window.addEventListener('error', event => {
+    if (event.target && event.target !== window) {
+        const tag = event.target.tagName;
+        if (tag === 'SCRIPT' || tag === 'LINK' || tag === 'IFRAME') {
+            showSiteNotice('Some website content could not load. Please refresh the page.');
+        }
+        return;
+    }
+    showSiteNotice('Some website features encountered a problem. Please refresh the page.');
+});
+window.addEventListener('unhandledrejection', () => {
+    showSiteNotice('Some website features encountered a problem. Please refresh the page.');
+});
 
 const io = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) } }) }, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
 function reveal(scope) {
