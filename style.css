@@ -2507,3 +2507,21 @@ img.image-load-failed{object-fit:contain;background:linear-gradient(135deg,#1714
     margin: 0 0 18px;
     line-height: 1.55;
 }
+
+
+/* Visitor-facing fallback notice for failed navigation, scripts, or resources. */
+.site-runtime-notice {
+    position: relative;
+    z-index: 1000;
+    padding: 13px 20px;
+    background: #21101d;
+    color: #fff;
+    text-align: center;
+    font: 13px/1.6 var(--body);
+    border-bottom: 1px solid rgba(255, 53, 188, .4);
+}
+.site-runtime-notice a {
+    color: var(--neon-soft);
+    text-decoration: underline;
+    white-space: nowrap;
+}
